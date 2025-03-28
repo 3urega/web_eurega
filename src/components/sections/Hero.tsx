@@ -17,7 +17,7 @@ export default function Hero({
   title = 'Soluciones digitales a medida',
   subtitle = 'Desarrollo web y aplicaciones que transforman ideas en productos digitales exitosos, con enfoque en resultados medibles para tu negocio.',
   ctaText = 'Ver proyectos',
-  ctaLink = '/portafolio',
+  ctaLink = '/proyectos',
   secondaryCtaText = 'Contactar',
   secondaryCtaLink = '/contacto',
 }: HeroProps) {

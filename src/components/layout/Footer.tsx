@@ -5,7 +5,7 @@ const navigation = {
   main: [
     { name: 'Inicio', href: '/' },
     { name: 'Servicios', href: '/servicios' },
-    { name: 'Portafolio', href: '/portafolio' },
+    { name: 'Proyectos', href: '/proyectos' },
     { name: 'Sobre Eurega', href: '/sobre' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contacto', href: '/contacto' },

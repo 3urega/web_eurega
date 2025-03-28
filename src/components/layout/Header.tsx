@@ -8,9 +8,8 @@ import Button from '../ui/Button';
 const navigation = [
   { name: 'Inicio', href: '/' },
   { name: 'Servicios', href: '/servicios' },
-  { name: 'Portafolio', href: '/portafolio' },
-  { name: 'Sobre Eurega', href: '/sobre' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Proyectos', href: '/proyectos' },
+  { name: 'Sobre Nosotros', href: '/sobre-nosotros' },
 ];
 
 export default function Header() {

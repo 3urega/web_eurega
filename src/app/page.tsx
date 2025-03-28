@@ -3,6 +3,14 @@ import MainLayout from '@/components/layout/MainLayout';
 import Hero from '@/components/sections/Hero';
 import ServicesGrid from '@/components/sections/ServicesGrid';
 import ProjectsGrid from '@/components/sections/ProjectsGrid';
+import ContactSection from '@/components/sections/ContactSection';
+
+// Servicios de ejemplo para el formulario de contacto
+const exampleServices = [
+  { id: 'web', name: 'Desarrollo Web' },
+  { id: 'app', name: 'Aplicaciones Móviles' },
+  { id: 'consult', name: 'Consultoría Técnica' },
+];
 
 export default function Home() {
   return (
@@ -24,7 +32,12 @@ export default function Home() {
         limit={3}
       />
       
-      {/* Aquí se añadirán más secciones como Testimonios, Contacto, etc. */}
+      {/* Sección de Contacto */}
+      <ContactSection 
+        title="Hablemos de tu proyecto"
+        description="Estamos listos para ayudarte a llevar tu idea al siguiente nivel. Cuéntanos lo que necesitas y te responderemos a la brevedad."
+        services={exampleServices}
+      />
     </MainLayout>
   );
 }

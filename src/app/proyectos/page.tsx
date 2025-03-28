@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
     <MainLayout>
       <PageHeader 
         title="Nuestros Proyectos" 
-        description="Explora nuestro portafolio de trabajos destacados"
+        description="Explora nuestra galería de proyectos destacados"
       />
       
       <Section>
