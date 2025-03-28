@@ -20,6 +20,54 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Configuración de Strapi CMS
+
+Este proyecto utiliza Strapi como CMS para gestionar contenido. Para configurar y ejecutar Strapi:
+
+1. Asegúrate de tener instalado Node.js (v18+) y npm/yarn
+2. Navega al directorio de Strapi:
+
+```bash
+cd eurega-cms
+```
+
+3. Instala las dependencias:
+
+```bash
+npm install
+# o
+yarn install
+```
+
+4. Inicia el servidor de desarrollo:
+
+```bash
+npm run develop
+# o
+yarn develop
+```
+
+El panel de administración de Strapi estará disponible en [http://localhost:1337/admin](http://localhost:1337/admin)
+
+### Manejo de errores de conexión
+
+Si experimentas errores de conexión con Strapi, asegúrate de que:
+
+1. El servidor de Strapi esté en ejecución en `http://localhost:1337`
+2. Las variables de entorno estén configuradas correctamente (copia `.env.example` a `.env.local`)
+3. No haya bloqueos de firewall o problemas de red
+
+Si Strapi no está disponible, la aplicación usará datos de ejemplo para mostrar contenido de muestra.
+
+## Variables de entorno
+
+Copia el archivo `.env.example` a `.env.local` y ajusta las variables según sea necesario:
+
+```
+NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
+NEXT_PUBLIC_STRAPI_API_TIMEOUT=5000
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
