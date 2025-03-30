@@ -9,7 +9,7 @@ interface ServiceAttributes {
   icon?: string;
   slug: string;
   featured?: boolean;
-  features?: string[];
+  features?: any; // Campo JSON de Strapi
 }
 
 // Definir la interfaz para un servicio

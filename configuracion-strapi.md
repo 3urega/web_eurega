@@ -60,14 +60,7 @@ touch postcss.config.js
 2. Edita el archivo con el siguiente contenido:
 
 ```javascript
-module.exports = {
-  plugins: {
-    'postcss-import': {},
-    'tailwindcss/nesting': {},
-    'tailwindcss': {},
-    'autoprefixer': {},
-  }
-};
+module.exports = {};
 ```
 
 ### Opción 2: Ajustar las variables de entorno
@@ -84,6 +77,111 @@ Después de aplicar cualquiera de estas soluciones, intenta iniciar Strapi nueva
 npm run develop
 ```
 
+## Solución al Error de PowerShell
+
+Si encuentras este error al intentar ejecutar comandos en PowerShell:
+
+```
+At line:1 char:15
++ cd eurega-cms && npm run develop
++               ~~
+The token '&&' is not a valid statement separator in this version.
+```
+
+Esto ocurre porque PowerShell no utiliza `&&` para encadenar comandos como lo hacen Bash o CMD. En su lugar, ejecuta los comandos por separado:
+
+```powershell
+cd eurega-cms
+npm run develop
+```
+
+O utiliza el operador de encadenamiento de PowerShell:
+
+```powershell
+cd eurega-cms; npm run develop
+```
+
+## Solución al Error 404 al Conectar con Strapi
+
+Si encuentras un error como este en tu aplicación Next.js:
+
+```
+Error: Error 404: Not Found
+    at fetchAPI (...)
+    at async getServices (...)
+    at async ServicesGrid (...)
+```
+
+### Causas del Error 404
+
+Este error ocurre cuando tu aplicación Next.js intenta conectarse a la API de Strapi pero no encuentra el endpoint solicitado. Las causas posibles son:
+
+1. **Strapi no está en ejecución**: La instancia de Strapi no está activa en el puerto 1337.
+2. **El tipo de contenido "services" no existe**: No has creado la colección "Service" en Strapi.
+3. **La API pública no está configurada**: Los permisos para acceder a los servicios no están habilitados.
+4. **Error en la ruta de la API**: La URL de conexión a Strapi es incorrecta.
+
+### Solución Paso a Paso
+
+#### 1. Verifica que Strapi esté funcionando
+
+Asegúrate de que Strapi está en ejecución:
+
+```powershell
+cd eurega-cms
+npm run develop
+```
+
+Comprueba que puedes acceder al panel de administración en:
+```
+http://localhost:1337/admin
+```
+
+#### 2. Crea la colección "Service" en Strapi
+
+En el panel de administración:
+
+1. Ve a "Content-Type Builder" en el menú lateral
+2. Haz clic en "Create new collection type"
+3. Nombra la colección "Service" (¡importante usar este nombre exacto!)
+4. Añade los campos necesarios:
+   - title (Texto corto)
+   - description (Texto largo)
+   - icon (Texto corto)
+   - slug (Texto corto, único)
+   - featured (Booleano)
+   - features (JSON) - **¡Importante!** Este campo debe ser tipo JSON, no array de textos
+5. Guarda la colección
+
+#### 3. Configura los permisos públicos
+
+Para que la API sea accesible:
+
+1. Ve a "Settings" → "Users & Permissions Plugin" → "Roles"
+2. Edita el rol "Public"
+3. Busca "Service" y habilita los permisos "find" y "findOne"
+4. Guarda la configuración
+
+#### 4. Crea servicios de ejemplo
+
+1. Ve a "Content Manager" → "Service"
+2. Haz clic en "Create new entry"
+3. Rellena los campos con datos de ejemplo
+4. Para el campo "features", introduce un array JSON como este:
+   ```json
+   ["Característica 1", "Característica 2", "Característica 3"]
+   ```
+5. Guarda y publica
+
+#### 5. Verifica que la API funciona
+
+Prueba directamente la API en tu navegador:
+```
+http://localhost:1337/api/services
+```
+
+Si ves datos JSON con tus servicios, significa que la API está funcionando correctamente.
+
 ## Crear los Tipos de Contenido Necesarios
 
 La aplicación Next.js espera los siguientes tipos de contenido en Strapi:
@@ -99,7 +197,7 @@ Crea una colección "Service" con los siguientes campos:
 | icon | Texto (corto) | Código HTML/SVG del icono (o ruta) |
 | slug | Texto (corto) | URL amigable (único) |
 | featured | Booleano | Si aparece en destacados |
-| features | Array de textos | Características del servicio |
+| features | JSON | Lista de características (array JSON) |
 
 ### 2. Proyectos (Project)
 
@@ -114,7 +212,7 @@ Crea una colección "Project" con los siguientes campos:
 | featured | Booleano | Si aparece en destacados |
 | category | Texto (corto) | Categoría del proyecto |
 | client | Texto (corto) | Nombre del cliente |
-| technologies | Array de textos | Tecnologías utilizadas |
+| technologies | JSON | Tecnologías utilizadas (array JSON) |
 
 ### 3. Formulario de Contacto (Opcional)
 
@@ -128,6 +226,36 @@ Si quieres que los formularios de contacto se guarden en Strapi:
    - company (Texto, opcional)
 
 2. Configura los permisos para permitir la creación desde la API pública
+
+## Consideraciones para el código
+
+### Manejo del campo "features" como JSON
+
+En tu código, asegúrate de que el componente ServiceCard y cualquier otro componente que muestre las características de un servicio sea capaz de manejar el campo "features" como un array JSON. Por ejemplo:
+
+```typescript
+// Si antes tenías algo así en ServiceCard.tsx:
+{features.map((feature, index) => (
+  <li key={index}>{feature}</li>
+))}
+
+// Asegúrate de que features es realmente un array:
+{Array.isArray(features) && features.map((feature, index) => (
+  <li key={index}>{feature}</li>
+))}
+```
+
+### Respaldo en caso de datos faltantes
+
+Es buena práctica proporcionar valores por defecto para cuando los datos de Strapi no estén disponibles:
+
+```typescript
+const features = service.attributes.features || [];
+// O más seguro:
+const features = Array.isArray(service.attributes.features) 
+  ? service.attributes.features 
+  : [];
+```
 
 ## Configuración de Permisos
 

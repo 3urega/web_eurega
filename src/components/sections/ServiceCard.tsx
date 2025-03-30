@@ -8,7 +8,7 @@ interface ServiceCardProps {
   description: string;
   icon?: string;
   link: string;
-  features?: string[];
+  features?: string[] | any; // Permitimos cualquier tipo para manejar JSON de Strapi
   showDetails?: boolean;
 }
 
@@ -20,6 +20,9 @@ export default function ServiceCard({
   features = [],
   showDetails = true,
 }: ServiceCardProps) {
+  // Aseguramos que features sea un array
+  const featuresList = Array.isArray(features) ? features : [];
+  
   return (
     <Card 
       className="flex flex-col h-full transition-transform duration-300 hover:-translate-y-1"
@@ -36,11 +39,11 @@ export default function ServiceCard({
         <p className="text-gray-600">{description}</p>
       </div>
 
-      {showDetails && features.length > 0 && (
+      {showDetails && featuresList.length > 0 && (
         <div className="mt-4 mb-6">
           <h4 className="text-sm font-medium text-gray-900 mb-3">Características:</h4>
           <ul className="space-y-2">
-            {features.map((feature, index) => (
+            {featuresList.map((feature, index) => (
               <li key={index} className="flex items-start">
                 <span className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 mr-2 text-purple-600">
                   {/* Placeholder para checkmark - en producción se usaría un componente de icono */}
