@@ -78,6 +78,21 @@ const placeholderServices: Service[] = [
   }
 ];
 
+// Función para verificar si un servicio es válido (tiene todas las propiedades necesarias)
+const isValidService = (service: any): service is Service => {
+  return (
+    service &&
+    typeof service === 'object' &&
+    'id' in service &&
+    'attributes' in service &&
+    service.attributes &&
+    typeof service.attributes === 'object' &&
+    'title' in service.attributes &&
+    'description' in service.attributes &&
+    'slug' in service.attributes
+  );
+};
+
 export default async function ServicesGrid({ 
   columns = 3, 
   showDetails = true,
@@ -88,9 +103,16 @@ export default async function ServicesGrid({
   // Intentar obtener servicios desde Strapi, usar placeholders en caso de error
   let services: Service[] = [];
   try {
-    services = await getServices();
-    // Si no hay servicios, usar placeholders
-    if (!services || services.length === 0) {
+    const fetchedServices = await getServices();
+    
+    // Verificar que los servicios obtenidos tienen la estructura correcta
+    if (Array.isArray(fetchedServices) && fetchedServices.length > 0) {
+      // Filtrar solo los servicios que tienen la estructura correcta
+      services = fetchedServices.filter(isValidService);
+    }
+    
+    // Si no hay servicios válidos, usar placeholders
+    if (services.length === 0) {
       services = placeholderServices;
     }
   } catch (error) {
@@ -100,8 +122,8 @@ export default async function ServicesGrid({
   }
   
   // Filtrar solo servicios destacados si es necesario
-  const displayedServices = featured 
-    ? services.filter((service: Service) => service.attributes.featured) 
+  const displayedServices = featured
+    ? services.filter(service => service.attributes && service.attributes.featured)
     : services;
   
   const gridCols = {
@@ -127,12 +149,12 @@ export default async function ServicesGrid({
 
       {/* Grid de servicios */}
       <div className={`grid gap-6 sm:gap-8 ${gridCols[columns]}`}>
-        {displayedServices.map((service: Service) => (
+        {displayedServices.map((service) => (
           <ServiceCard 
             key={service.id}
             title={service.attributes.title}
             description={service.attributes.description}
-            icon={service.attributes.icon}
+            icon={service.attributes.icon || undefined}
             link={`/servicios/${service.attributes.slug}`}
             features={service.attributes.features || []}
             showDetails={showDetails}
