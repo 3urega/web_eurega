@@ -56,7 +56,7 @@ export default function ProjectCard({
         
         {/* Categoría (badge) */}
         {category && (
-          <span className="absolute top-3 right-3 bg-primary-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
+          <span className="absolute top-3 right-3 bg-purple-700 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
             {category}
           </span>
         )}
@@ -69,7 +69,7 @@ export default function ProjectCard({
         </h3>
         
         {description && showDetails && (
-          <p className="text-gray-600 mb-4 line-clamp-3">
+          <p className="text-gray-800 mb-4 line-clamp-3 font-medium">
             {description}
           </p>
         )}
@@ -81,7 +81,7 @@ export default function ProjectCard({
               {technologies.map((tech, index) => (
                 <span 
                   key={`${id}-tech-${index}`}
-                  className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-1 rounded-full"
+                  className="bg-gray-200 text-gray-900 text-xs font-semibold px-2.5 py-1 rounded-full"
                 >
                   {tech}
                 </span>

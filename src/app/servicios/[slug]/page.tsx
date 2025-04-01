@@ -40,12 +40,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <Container>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Lo que ofrecemos</h2>
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Lo que ofrecemos</h2>
               <div className="prose prose-lg max-w-none">
-                <p>{description}</p>
+                <p className="text-gray-800 font-medium">{description}</p>
                 
                 {/* Contenido adicional - en una implementación real vendría de Strapi */}
-                <p>
+                <p className="text-gray-800 font-medium">
                   Nos especializamos en proporcionar soluciones personalizadas que se adaptan 
                   perfectamente a las necesidades específicas de tu negocio, garantizando 
                   resultados que superan las expectativas.
@@ -54,18 +54,18 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold mb-6">Características</h2>
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Características</h2>
               {features && features.length > 0 ? (
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {features.map((feature: string, index: number) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-primary-600 mr-2">✓</span>
-                      <span>{feature}</span>
+                    <li key={index} className="flex items-start bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                      <span className="text-purple-700 font-bold mr-3 mt-0.5 text-lg">✓</span>
+                      <span className="text-gray-800 font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p>Este servicio no tiene características específicas listadas.</p>
+                <p className="text-gray-800 font-medium">Este servicio no tiene características específicas listadas.</p>
               )}
             </div>
           </div>

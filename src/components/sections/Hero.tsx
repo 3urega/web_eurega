@@ -105,11 +105,68 @@ export default function Hero({
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-              <div className="w-[45rem] h-[25rem] rounded-md bg-gradient-to-r from-purple-100 to-teal-50 flex items-center justify-center text-gray-400">
-                {/* Placeholder para imagen o gráfico de proyecto */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-24 h-24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                </svg>
+              {/* Simulador de chat de IA */}
+              <div className="w-[45rem] h-[25rem] rounded-md bg-white shadow-md overflow-hidden flex flex-col">
+                {/* Encabezado del chat */}
+                <div className="bg-gray-800 text-white p-4 flex items-center">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span className="ml-2 font-medium">Chat con IA</span>
+                </div>
+                
+                {/* Cuerpo del chat */}
+                <div className="flex-grow p-6 overflow-y-auto bg-gray-50">
+                  {/* Mensaje del usuario */}
+                  <div className="flex justify-end mb-4">
+                    <div className="bg-purple-600 text-white rounded-lg py-2 px-4 max-w-md">
+                      <p>¿Cómo puedo crear mi app de IA?</p>
+                    </div>
+                  </div>
+                  
+                  {/* Indicador de escritura */}
+                  <div className="flex items-center mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center text-white font-bold mr-2">
+                      AI
+                    </div>
+                    <motion.div 
+                      className="flex space-x-1"
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Respuesta de la IA */}
+                  <div className="flex mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center text-white font-bold mr-2">
+                      AI
+                    </div>
+                    <div className="bg-white border border-gray-200 rounded-lg py-2 px-4 max-w-md shadow-sm">
+                      <p className="text-gray-800">Para crear tu propia aplicación de IA, te recomiendo contactar con expertos en el desarrollo de este tipo de soluciones. <span className="font-bold text-purple-700">Escríbele a eurega</span>, ellos se especializan en la implementación de soluciones con inteligencia artificial a medida.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Input del chat */}
+                <div className="p-4 border-t border-gray-200 bg-white">
+                  <div className="flex">
+                    <input
+                      type="text"
+                      placeholder="Escribe un mensaje..."
+                      className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      disabled
+                    />
+                    <button className="bg-purple-600 text-white p-2 rounded-r-md hover:bg-purple-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

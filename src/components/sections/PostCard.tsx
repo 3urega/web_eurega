@@ -45,19 +45,19 @@ export default function PostCard({ post }: PostCardProps) {
       </div>
       
       <div className="flex flex-col flex-grow p-6">
-        <div className="text-sm text-gray-500 mb-2">
+        <div className="text-sm text-gray-700 font-medium mb-2">
           {publishDate}
         </div>
         
-        <h3 className="text-xl font-bold mb-2">{title || 'Sin título'}</h3>
+        <h3 className="text-xl font-bold mb-2 text-gray-900">{title || 'Sin título'}</h3>
         
-        <p className="text-gray-600 mb-4 flex-grow">
+        <p className="text-gray-800 mb-4 flex-grow font-medium">
           {summary ? (summary.length > 150 ? `${summary.substring(0, 150)}...` : summary) : 'Sin descripción'}
         </p>
         
         <Link 
           href={`/blog/${slug || 'post'}`}
-          className="inline-block text-blue-600 font-semibold hover:text-blue-800 transition-colors"
+          className="inline-block text-purple-700 font-semibold hover:text-purple-900 transition-colors"
         >
           Leer más →
         </Link>

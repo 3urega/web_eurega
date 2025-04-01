@@ -39,10 +39,10 @@ export default function Button({
   
   // Variant classes
   const variantClasses = {
-    primary: 'bg-purple-600 text-white hover:bg-purple-700 focus-visible:ring-purple-500',
-    secondary: 'bg-teal-500 text-white hover:bg-teal-600 focus-visible:ring-teal-500',
-    outline: 'border border-purple-600 text-purple-600 hover:bg-purple-50 focus-visible:ring-purple-500',
-    ghost: 'text-purple-600 hover:bg-purple-50 focus-visible:ring-purple-500',
+    primary: 'bg-purple-700 text-white hover:bg-purple-800 focus-visible:ring-purple-500',
+    secondary: 'bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-500',
+    outline: 'border-2 border-purple-700 text-purple-800 font-semibold hover:bg-purple-100 focus-visible:ring-purple-500',
+    ghost: 'text-purple-800 font-semibold hover:bg-purple-100 focus-visible:ring-purple-500',
   };
   
   // Combine all classes

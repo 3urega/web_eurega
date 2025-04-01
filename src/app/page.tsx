@@ -1,7 +1,8 @@
 import React from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import Hero from '@/components/sections/Hero';
-import ServicesGrid from '@/components/sections/ServicesGrid';
+import AIServicesSection from '@/components/sections/AIServicesSection';
+import AIServicesDetailedSection from '@/components/sections/AIServicesDetailedSection';
 import ProjectsGrid from '@/components/sections/ProjectsGrid';
 import ContactSection from '@/components/sections/ContactSection';
 import PostsGrid from '@/components/sections/PostsGrid';
@@ -11,6 +12,7 @@ const exampleServices = [
   { id: 'web', name: 'Desarrollo Web' },
   { id: 'app', name: 'Aplicaciones Móviles' },
   { id: 'consult', name: 'Consultoría Técnica' },
+  { id: 'ai', name: 'Inteligencia Artificial' },
 ];
 
 export default function Home() {
@@ -18,27 +20,28 @@ export default function Home() {
     <MainLayout>
       <Hero />
       
-      {/* Sección de Servicios */}
-      <ServicesGrid 
-        title="Nuestros Servicios" 
-        description="Soluciones digitales personalizadas para hacer crecer tu negocio" 
-        featured={true}
-      />
+      {/* Sección de Servicios de IA */}
+      <AIServicesSection />
       
-      {/* Sección de Proyectos Destacados */}
+      {/* Sección detallada de Servicios de IA */}
+      <AIServicesDetailedSection showHeaderAndFooter={false} />
+      
+      {/* Sección de Proyectos Destacados - Temporalmente desactivada
       <ProjectsGrid 
         title="Proyectos Destacados" 
         description="Algunos de nuestros trabajos más recientes" 
         featured={true}
         limit={3}
       />
+      */}
       
-      {/* Sección de Blog */}
+      {/* Sección de Blog - Temporalmente desactivada
       <PostsGrid 
         title="Nuestro Blog" 
         limit={3} 
         featured={true} 
       />
+      */}
       
       {/* Sección de Contacto */}
       <ContactSection 

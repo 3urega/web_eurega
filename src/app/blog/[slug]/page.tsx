@@ -4,6 +4,8 @@ import Section from '@/components/ui/Section';
 import PostContent from '@/components/blog/PostContent';
 import { getPostBySlug, getPosts } from '@/services/blog';
 import { notFound } from 'next/navigation';
+import MainLayout from '@/components/layout/MainLayout';
+import PageHeader from '@/components/ui/PageHeader';
 
 interface BlogPostPageProps {
   params: {
@@ -38,13 +40,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const post = await getPostBySlug(params.slug);
     
     return (
-      <main>
+      <MainLayout>
+        <PageHeader 
+          title={post.title}
+          description={post.summary || ""}
+        />
         <Section spacing="lg" background="bg-white">
           <Container size="md">
             <PostContent post={post} />
           </Container>
         </Section>
-      </main>
+      </MainLayout>
     );
   } catch (error) {
     notFound();

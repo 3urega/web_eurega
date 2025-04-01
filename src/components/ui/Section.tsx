@@ -37,8 +37,8 @@ export default function Section({
     <>
       {(title || subtitle) && (
         <div className="text-center mb-10">
-          {title && <h2 className="text-3xl font-bold mb-4">{title}</h2>}
-          {subtitle && <p className="text-xl text-gray-600">{subtitle}</p>}
+          {title && <h2 className="text-3xl font-bold mb-4 text-gray-900">{title}</h2>}
+          {subtitle && <p className="text-xl text-gray-800 font-medium">{subtitle}</p>}
         </div>
       )}
       {children}

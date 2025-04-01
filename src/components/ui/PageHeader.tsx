@@ -36,11 +36,11 @@ export default function PageHeader({
     : {};
 
   const textColorClass = backgroundImage ? 'text-white' : 'text-gray-900';
-  const descriptionColorClass = backgroundImage ? 'text-gray-200' : 'text-gray-600';
+  const descriptionColorClass = backgroundImage ? 'text-white' : 'text-gray-800';
 
   return (
     <div 
-      className={`py-12 sm:py-16 ${backgroundImage ? 'bg-gray-900' : 'bg-gradient-to-b from-purple-50 to-white'}`}
+      className={`py-12 sm:py-16 ${backgroundImage ? 'bg-gray-900' : 'bg-gradient-to-b from-purple-100 to-white'}`}
       style={backgroundStyle}
     >
       <Container>
@@ -51,11 +51,11 @@ export default function PageHeader({
                 {breadcrumb.map((item, index) => (
                   <li key={item.href} className="flex items-center">
                     {index > 0 && (
-                      <span className={`mx-2 ${backgroundImage ? 'text-gray-400' : 'text-gray-500'}`}>/</span>
+                      <span className={`mx-2 ${backgroundImage ? 'text-gray-300' : 'text-gray-700'}`}>/</span>
                     )}
                     <Link 
                       href={item.href} 
-                      className={`hover:underline ${backgroundImage ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-purple-600'}`}
+                      className={`hover:underline ${backgroundImage ? 'text-gray-100 hover:text-white' : 'text-gray-700 hover:text-purple-700'}`}
                     >
                       {item.label}
                     </Link>
@@ -73,7 +73,7 @@ export default function PageHeader({
 
           {description && (
             <p 
-              className={`mt-4 max-w-2xl text-lg ${descriptionColorClass} ${alignment === 'center' ? 'mx-auto' : ''}`}
+              className={`mt-4 max-w-2xl text-lg ${descriptionColorClass} ${backgroundImage ? '' : 'font-medium'} ${alignment === 'center' ? 'mx-auto' : ''}`}
             >
               {description}
             </p>

@@ -68,9 +68,126 @@ export async function getProjects() {
 export async function getServices() {
   try {
     const data = await fetchAPI('services?populate=*');
-    return data.data || [];
+    const strapiServices = data.data || [];
+    
+    // Servicios de IA temporales hasta que se agreguen en Strapi
+    const iaServices = [
+      {
+        id: 'integracion-ia',
+        slug: 'integracion-ia',
+        title: 'Integración de Agentes de IA',
+        description: 'Incorporamos agentes inteligentes en tus sistemas para automatizar procesos, mejorar la eficiencia y optimizar la toma de decisiones.',
+        features: [
+          'Automatización de procesos con IA',
+          'Agentes virtuales personalizados',
+          'Optimización de flujos de trabajo',
+          'Implementación de modelos de IA',
+          'Integración con sistemas existentes'
+        ]
+      },
+      {
+        id: 'desarrollo-ia',
+        slug: 'desarrollo-ia',
+        title: 'Desarrollo de proyectos con IA desde cero',
+        description: 'Si tienes una idea innovadora, te ayudamos a convertirla en un producto funcional basado en IA.',
+        features: [
+          'Análisis y diseño de soluciones de IA',
+          'Desarrollo de aplicaciones con IA integrada',
+          'Implementación de algoritmos de machine learning',
+          'Pruebas y validación de modelos',
+          'Despliegue de soluciones en producción'
+        ]
+      },
+      {
+        id: 'chatbots-ia',
+        slug: 'chatbots-ia',
+        title: 'Chatbots y asistentes de IA',
+        description: 'Mejora la experiencia de tus usuarios con chats impulsados por IA. Integramos chatbots en tu web o plataforma.',
+        features: [
+          'Chatbots con procesamiento de lenguaje natural',
+          'Asistentes virtuales personalizados',
+          'Integración con plataformas de mensajería',
+          'Análisis de interacciones y mejora continua',
+          'Soporte multilenguaje y personalizable'
+        ]
+      },
+      {
+        id: 'web-scraping-ia',
+        slug: 'web-scraping-ia',
+        title: 'Web Scraping con IA',
+        description: 'Captura, procesa y adapta contenido de manera inteligente con nuestras soluciones de web scraping basadas en IA.',
+        features: [
+          'Extracción automatizada de datos web',
+          'Análisis de contenido con IA',
+          'Monitoreo de competencia y mercado',
+          'Automatización de recopilación de información',
+          'Procesamiento de datos estructurados y no estructurados'
+        ]
+      }
+    ];
+    
+    // Verificar si ya existen estos servicios en Strapi para evitar duplicados
+    const existingIASlugs = strapiServices.map((service: any) => service.slug);
+    const newIAServices = iaServices.filter(service => !existingIASlugs.includes(service.slug));
+    
+    // Combinar servicios de Strapi con los temporales de IA
+    return [...strapiServices, ...newIAServices];
   } catch (error) {
-    return [];
+    // Si hay un error, devolver al menos los servicios de IA temporales
+    return [
+      {
+        id: 'integracion-ia',
+        slug: 'integracion-ia',
+        title: 'Integración de Agentes de IA',
+        description: 'Incorporamos agentes inteligentes en tus sistemas para automatizar procesos, mejorar la eficiencia y optimizar la toma de decisiones.',
+        features: [
+          'Automatización de procesos con IA',
+          'Agentes virtuales personalizados',
+          'Optimización de flujos de trabajo',
+          'Implementación de modelos de IA',
+          'Integración con sistemas existentes'
+        ]
+      },
+      {
+        id: 'desarrollo-ia',
+        slug: 'desarrollo-ia',
+        title: 'Desarrollo de proyectos con IA desde cero',
+        description: 'Si tienes una idea innovadora, te ayudamos a convertirla en un producto funcional basado en IA.',
+        features: [
+          'Análisis y diseño de soluciones de IA',
+          'Desarrollo de aplicaciones con IA integrada',
+          'Implementación de algoritmos de machine learning',
+          'Pruebas y validación de modelos',
+          'Despliegue de soluciones en producción'
+        ]
+      },
+      {
+        id: 'chatbots-ia',
+        slug: 'chatbots-ia',
+        title: 'Chatbots y asistentes de IA',
+        description: 'Mejora la experiencia de tus usuarios con chats impulsados por IA. Integramos chatbots en tu web o plataforma.',
+        features: [
+          'Chatbots con procesamiento de lenguaje natural',
+          'Asistentes virtuales personalizados',
+          'Integración con plataformas de mensajería',
+          'Análisis de interacciones y mejora continua',
+          'Soporte multilenguaje y personalizable'
+        ]
+      },
+      {
+        id: 'web-scraping-ia',
+        slug: 'web-scraping-ia',
+        title: 'Web Scraping con IA',
+        description: 'Captura, procesa y adapta contenido de manera inteligente con nuestras soluciones de web scraping basadas en IA.',
+        features: [
+          'Extracción automatizada de datos web',
+          'Análisis de contenido con IA',
+          'Monitoreo de competencia y mercado',
+          'Automatización de recopilación de información',
+          'Procesamiento de datos estructurados y no estructurados'
+        ]
+      }
+    ];
   }
 }
 
