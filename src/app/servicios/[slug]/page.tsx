@@ -19,7 +19,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   
   // Encontrar el servicio por slug
   const service = services.find(
-    (s: any) => s.attributes.slug === slug
+    (s: any) => s.slug === slug
   );
   
   // Si no se encuentra el servicio, mostrar la página 404
@@ -27,7 +27,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
   
-  const { title, description, features } = service.attributes;
+  const { title, description, features } = service;
   
   return (
     <MainLayout>

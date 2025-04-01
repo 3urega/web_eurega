@@ -43,6 +43,18 @@
         "licenseKey": "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDQ3NjE1OTksImp0aSI6IjYwNjcxZDkyLTU5ODUtNGRmMy05NTY2LWU1ZDkxOWI0NDFmMiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjU5OWZhZTU4In0.G9smp4WMFeBhJt4EQ2A4WpVGCehy62FPez63cpbzqzqxkc8HoUcMP0ilL7hGqq1RlI6QFP_3hxxpTN1OROTZXQ"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "posts"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "posts"
     }
   }
 }

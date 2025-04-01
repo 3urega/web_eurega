@@ -22,7 +22,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   
   // Encontrar el proyecto por slug
   const project = projects.find(
-    (p: any) => p.attributes.slug === slug
+    (p: any) => p.slug === slug
   );
   
   // Si no se encuentra el proyecto, mostrar la página 404
@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     imageUrl,
     category,
     technologies 
-  } = project.attributes;
+  } = project;
   
   return (
     <MainLayout>

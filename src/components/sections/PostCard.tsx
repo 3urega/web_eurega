@@ -9,13 +9,24 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const { title, slug, summary, publishedAt, cover } = post.attributes;
+  // Verificar si post existe
+  if (!post) {
+    return (
+      <Card className="h-full flex flex-col overflow-hidden">
+        <div className="p-6">
+          <p className="text-red-500">Error: Datos de post incompletos</p>
+        </div>
+      </Card>
+    );
+  }
   
-  const coverImage = cover?.data?.attributes?.url 
-    ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${cover.data.attributes.url}`
+  const { title, slug, summary, publishedAt, cover } = post;
+  
+  const coverImage = cover
+    ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${cover.url}`
     : '/images/placeholder-blog.svg';
   
-  const publishDate = new Date(publishedAt).toLocaleDateString('es-ES', {
+  const publishDate = new Date(publishedAt || Date.now()).toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -26,7 +37,7 @@ export default function PostCard({ post }: PostCardProps) {
       <div className="relative w-full h-48 overflow-hidden">
         <Image
           src={coverImage}
-          alt={title}
+          alt={title || 'Post sin título'}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -38,14 +49,14 @@ export default function PostCard({ post }: PostCardProps) {
           {publishDate}
         </div>
         
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2">{title || 'Sin título'}</h3>
         
         <p className="text-gray-600 mb-4 flex-grow">
-          {summary.length > 150 ? `${summary.substring(0, 150)}...` : summary}
+          {summary ? (summary.length > 150 ? `${summary.substring(0, 150)}...` : summary) : 'Sin descripción'}
         </p>
         
         <Link 
-          href={`/blog/${slug}`}
+          href={`/blog/${slug || 'post'}`}
           className="inline-block text-blue-600 font-semibold hover:text-blue-800 transition-colors"
         >
           Leer más →

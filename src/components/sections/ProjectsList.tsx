@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import ProjectsFilter from './ProjectsFilter';
 
-interface ProjectAttributes {
+// Definición de tipos
+interface Project {
+  id: string;
   title: string;
   description?: string;
   slug: string;
@@ -12,11 +14,6 @@ interface ProjectAttributes {
   featured?: boolean;
   imageUrl?: string;
   technologies?: string[];
-}
-
-interface Project {
-  id: string;
-  attributes: ProjectAttributes;
 }
 
 interface ProjectsListProps {
@@ -28,25 +25,27 @@ export default function ProjectsList({
   initialProjects, 
   categories 
 }: ProjectsListProps) {
-  const [activeCategory, setActiveCategory] = useState('');
+  const [activeCategory, setActiveCategory] = useState('todos');
   
-  // Filtrar proyectos por categoría seleccionada
-  const filteredProjects = activeCategory 
-    ? initialProjects.filter(project => project.attributes.category === activeCategory)
-    : initialProjects;
+  // Filtrar proyectos según la categoría seleccionada
+  const filteredProjects = activeCategory === 'todos'
+    ? initialProjects
+    : initialProjects.filter(project => 
+        project.category && project.category.toLowerCase() === activeCategory.toLowerCase()
+      );
   
   return (
     <div>
-      {/* Filtros */}
+      {/* Filtro de categorías */}
       <ProjectsFilter 
         categories={categories}
-        onFilterChange={setActiveCategory}
         activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
       />
       
-      {/* Mensaje si no hay proyectos */}
+      {/* Lista de proyectos */}
       {filteredProjects.length === 0 ? (
-        <div className="text-center py-12 bg-gray-100 rounded-lg">
+        <div className="text-center py-12 bg-gray-100 rounded-lg mt-8">
           <p className="text-gray-600">No se encontraron proyectos en esta categoría.</p>
         </div>
       ) : (
@@ -55,12 +54,12 @@ export default function ProjectsList({
             <ProjectCard 
               key={project.id}
               id={project.id}
-              title={project.attributes.title}
-              description={project.attributes.description}
-              category={project.attributes.category}
-              imageUrl={project.attributes.imageUrl}
-              slug={project.attributes.slug}
-              technologies={project.attributes.technologies}
+              title={project.title}
+              description={project.description}
+              category={project.category}
+              imageUrl={project.imageUrl}
+              slug={project.slug}
+              technologies={project.technologies}
               showDetails={true}
             />
           ))}

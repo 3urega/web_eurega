@@ -1,52 +1,33 @@
 import { fetchAPI } from './strapi';
 
+// Actualizada para reflejar la estructura real de la API
 export interface Post {
   id: number;
-  attributes: {
-    title: string;
-    slug: string;
-    summary: string;
-    content: string;
-    publishedAt: string;
-    featured: boolean;
-    cover: {
-      data: {
-        attributes: {
-          url: string;
-          width: number;
-          height: number;
-          alternativeText: string;
-        };
-      };
-    };
-    categories: {
-      data: Array<{
-        id: number;
-        attributes: {
-          name: string;
-          slug: string;
-        };
-      }>;
-    };
-    author: {
-      data: {
-        attributes: {
-          username: string;
-          email: string;
-        };
-      };
-    };
-  };
+  documentId?: string;
+  title: string;
+  slug: string;
+  summary: string;
+  content: string | null;
+  featured: boolean;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  cover: any | null;
 }
 
 export async function getPosts(limit = 10) {
   try {
     const data = await fetchAPI(
-      `posts?populate=cover,categories,author&pagination[limit]=${limit}&sort=publishedAt:desc`
+      `posts?pagination[limit]=${limit}&sort=publishedAt:desc&populate=*`
     );
+    
+    // Log detallado de la respuesta
+    console.log('=== DATOS RECIBIDOS DE LA API DE POSTS ===');
+    console.log(JSON.stringify(data, null, 2));
+    console.log('=== FIN DE DATOS ===');
+    
     return data.data as Post[];
   } catch (error) {
-    console.error('Error fetching posts:', error);
     return [];
   }
 }
@@ -54,7 +35,7 @@ export async function getPosts(limit = 10) {
 export async function getPostBySlug(slug: string) {
   try {
     const data = await fetchAPI(
-      `posts?filters[slug][$eq]=${slug}&populate=cover,categories,author`
+      `posts?filters[slug][$eq]=${slug}&populate=*`
     );
     
     if (data.data && data.data.length > 0) {
@@ -63,7 +44,6 @@ export async function getPostBySlug(slug: string) {
     
     throw new Error(`Post with slug ${slug} not found`);
   } catch (error) {
-    console.error(`Error fetching post with slug ${slug}:`, error);
     throw error;
   }
 }
@@ -73,7 +53,6 @@ export async function getCategories() {
     const data = await fetchAPI('categories');
     return data.data;
   } catch (error) {
-    console.error('Error fetching categories:', error);
     return [];
   }
 } 

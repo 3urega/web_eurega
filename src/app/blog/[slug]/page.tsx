@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   try {
     const post = await getPostBySlug(params.slug);
     return {
-      title: `${post.attributes.title} | Blog Eurega`,
-      description: post.attributes.summary,
+      title: `${post.title} | Blog Eurega`,
+      description: post.summary,
     };
   } catch (error) {
     return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 export async function generateStaticParams() {
   const posts = await getPosts(100);
   return posts.map((post) => ({
-    slug: post.attributes.slug,
+    slug: post.slug,
   }));
 }
 

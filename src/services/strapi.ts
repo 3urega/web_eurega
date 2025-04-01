@@ -45,15 +45,6 @@ export async function fetchAPI(
     const data = await res.json();
     return data;
   } catch (error: any) {
-    // Manejamos diferentes tipos de errores de conexión
-    if (error.name === 'AbortError') {
-      console.error('La conexión a Strapi ha excedido el tiempo límite');
-    } else if (error.message && error.message.includes('fetch failed')) {
-      console.error('No se pudo conectar con el servidor Strapi. ¿Está en ejecución?');
-    } else {
-      console.error('Error al obtener datos de Strapi:', error);
-    }
-    
     // Devolvemos una estructura vacía compatible con lo que esperamos recibir
     return { data: [] };
   }
@@ -67,7 +58,6 @@ export async function getProjects() {
     const data = await fetchAPI('projects?populate=*');
     return data.data || [];
   } catch (error) {
-    console.error('Error al obtener proyectos:', error);
     return [];
   }
 }
@@ -80,7 +70,6 @@ export async function getServices() {
     const data = await fetchAPI('services?populate=*');
     return data.data || [];
   } catch (error) {
-    console.error('Error al obtener servicios:', error);
     return [];
   }
 }
@@ -95,7 +84,6 @@ export async function sendContactForm(formData: any) {
       body: JSON.stringify({ data: formData }),
     });
   } catch (error) {
-    console.error('Error al enviar el formulario de contacto:', error);
     throw error; // En este caso sí queremos propagar el error para manejarlo en el UI
   }
 } 

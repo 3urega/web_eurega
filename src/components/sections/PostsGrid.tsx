@@ -12,10 +12,13 @@ interface PostsGridProps {
 export default async function PostsGrid({ limit = 6, title = "Blog", featured = false }: PostsGridProps) {
   const posts = await getPosts(limit);
   
+  // Filtrar posts sin datos válidos
+  const validPosts = posts.filter(post => post && post.title);
+  
   // Si solo queremos posts destacados
   const filteredPosts = featured 
-    ? posts.filter(post => post.attributes.featured) 
-    : posts;
+    ? validPosts.filter(post => post.featured) 
+    : validPosts;
 
   return (
     <Section title={title}>
