@@ -329,8 +329,8 @@ export default function AIServicesDetailedSection({ showHeaderAndFooter = true }
                 <Button href="/contacto" variant="primary" size="lg">
                   Solicitar consultoría gratuita
                 </Button>
-                <Button href="tel:+34123456789" variant="outline" size="lg">
-                  Llamar ahora
+                <Button href="/guia-seo-ia" variant="outline" size="lg">
+                  Guía SEO para proyectos de IA
                 </Button>
               </div>
             </motion.div>

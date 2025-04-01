@@ -1,7 +1,21 @@
+import { Metadata } from 'next';
 import MainLayout from '@/components/layout/MainLayout';
 import PageHeader from '@/components/ui/PageHeader';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
+
+// Metadatos específicos para la página de contacto
+export const metadata: Metadata = {
+  title: 'Contacto | Consultoría de IA personalizada | Eurega',
+  description: 'Contacta con nuestro equipo de expertos en IA para recibir asesoramiento personalizado sobre tus proyectos de automatización, chatbots e integración de inteligencia artificial.',
+  alternates: {
+    canonical: 'https://eurega.com/contacto',
+  },
+  openGraph: {
+    title: 'Contacta con Eurega | Expertos en soluciones de IA',
+    description: 'Solicita información sobre nuestros servicios de IA. Estamos listos para ayudarte con tu próximo proyecto tecnológico.',
+  }
+};
 
 export default function ContactPage() {
   return (
@@ -65,16 +79,36 @@ export default function ContactPage() {
             </div>
             
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Formulario de Contacto</h2>
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Consultoría de IA Personalizada</h2>
               <p className="mb-6 text-gray-800 font-medium">
-                Próximamente implementaremos un formulario de contacto completo. 
-                Mientras tanto, puedes contactarnos a través de nuestro email o teléfono.
+                ¿Buscas mejorar tu negocio con inteligencia artificial? Contacta con nuestros expertos 
+                para recibir asesoramiento personalizado sobre integración de IA, automatización de procesos 
+                o desarrollo de chatbots inteligentes.
               </p>
               
               <div className="bg-purple-50 p-8 rounded-lg border border-purple-100 shadow-sm">
-                <p className="text-center text-purple-800 font-medium">
+                <p className="text-center text-purple-800 font-medium mb-4">
                   Formulario de contacto en desarrollo...
                 </p>
+                <p className="text-gray-800 font-medium">
+                  Mientras tanto, puedes enviarnos un email a <a href="mailto:info@eurega.com" className="text-purple-700 font-semibold hover:underline">info@eurega.com</a> o 
+                  llamarnos al <a href="tel:+34912345678" className="text-purple-700 font-semibold hover:underline">+34 912 345 678</a>.
+                </p>
+              </div>
+              
+              {/* FAQ para SEO */}
+              <div className="mt-10">
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Preguntas frecuentes</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                    <h4 className="font-bold text-gray-900">¿Qué información necesito para solicitar una consultoría de IA?</h4>
+                    <p className="text-gray-800">Para ofrecerte la mejor solución, es útil que nos proporciones detalles sobre tu negocio, los procesos que quieres mejorar y tus objetivos con la implementación de IA.</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                    <h4 className="font-bold text-gray-900">¿Ofrecen demostraciones de sus soluciones de IA?</h4>
+                    <p className="text-gray-800">Sí, podemos programar una demostración personalizada de nuestras soluciones de IA adaptadas a tu sector y necesidades específicas.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
