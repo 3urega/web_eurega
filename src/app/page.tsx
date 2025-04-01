@@ -4,6 +4,7 @@ import Hero from '@/components/sections/Hero';
 import ServicesGrid from '@/components/sections/ServicesGrid';
 import ProjectsGrid from '@/components/sections/ProjectsGrid';
 import ContactSection from '@/components/sections/ContactSection';
+import PostsGrid from '@/components/sections/PostsGrid';
 
 // Servicios de ejemplo para el formulario de contacto
 const exampleServices = [
@@ -30,6 +31,13 @@ export default function Home() {
         description="Algunos de nuestros trabajos más recientes" 
         featured={true}
         limit={3}
+      />
+      
+      {/* Sección de Blog */}
+      <PostsGrid 
+        title="Nuestro Blog" 
+        limit={3} 
+        featured={true} 
       />
       
       {/* Sección de Contacto */}

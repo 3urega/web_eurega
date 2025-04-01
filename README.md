@@ -1,37 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eurega - Plataforma Web Corporativa
 
-## Getting Started
+Este proyecto consiste en una plataforma web corporativa completa desarrollada con tecnologías modernas:
 
-First, run the development server:
+- **Frontend**: Aplicación Next.js (React)
+- **Backend**: Strapi CMS
+- **Base de datos**: PostgreSQL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Estructura del Proyecto
+
+```
+eurega/
+├── eurega-cms/        # Backend Strapi
+└── frontend/          # Frontend Next.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requisitos Previos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js (v18+)
+- NPM o Yarn
+- PostgreSQL (v14+)
+- Git
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuración del Entorno
 
-## Configuración de Strapi CMS
+### 1. Base de Datos PostgreSQL
 
-Este proyecto utiliza Strapi como CMS para gestionar contenido. Para configurar y ejecutar Strapi:
+1. Instala PostgreSQL si aún no lo tienes
+2. Crea una base de datos para el proyecto:
 
-1. Asegúrate de tener instalado Node.js (v18+) y npm/yarn
-2. Navega al directorio de Strapi:
+```sql
+CREATE DATABASE eurega;
+CREATE USER eurega_user WITH ENCRYPTED PASSWORD 'tu_contraseña';
+GRANT ALL PRIVILEGES ON DATABASE eurega TO eurega_user;
+```
+
+### 2. Backend (Strapi CMS)
+
+Navega al directorio del backend:
 
 ```bash
 cd eurega-cms
 ```
 
-3. Instala las dependencias:
+Instala las dependencias:
 
 ```bash
 npm install
@@ -39,7 +50,21 @@ npm install
 yarn install
 ```
 
-4. Inicia el servidor de desarrollo:
+Configura las variables de entorno:
+
+1. Copia el archivo `.env.example` a `.env`
+2. Actualiza las variables relacionadas con la base de datos:
+
+```
+DATABASE_CLIENT=postgres
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=5432
+DATABASE_NAME=eurega
+DATABASE_USERNAME=eurega_user
+DATABASE_PASSWORD=tu_contraseña
+```
+
+Inicia el servidor de desarrollo:
 
 ```bash
 npm run develop
@@ -49,36 +74,94 @@ yarn develop
 
 El panel de administración de Strapi estará disponible en [http://localhost:1337/admin](http://localhost:1337/admin)
 
-### Manejo de errores de conexión
+### 3. Frontend (Next.js)
 
-Si experimentas errores de conexión con Strapi, asegúrate de que:
+Navega al directorio del frontend:
 
-1. El servidor de Strapi esté en ejecución en `http://localhost:1337`
-2. Las variables de entorno estén configuradas correctamente (copia `.env.example` a `.env.local`)
-3. No haya bloqueos de firewall o problemas de red
+```bash
+cd ../frontend
+```
 
-Si Strapi no está disponible, la aplicación usará datos de ejemplo para mostrar contenido de muestra.
+Instala las dependencias:
 
-## Variables de entorno
+```bash
+npm install
+# o
+yarn install
+```
 
-Copia el archivo `.env.example` a `.env.local` y ajusta las variables según sea necesario:
+Configura las variables de entorno:
+
+1. Copia el archivo `.env.example` a `.env.local`
+2. Actualiza las variables según sea necesario:
 
 ```
 NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
 NEXT_PUBLIC_STRAPI_API_TIMEOUT=5000
 ```
 
-## Learn More
+Inicia el servidor de desarrollo:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev
+# o
+yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+La aplicación web estará disponible en [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Desarrollo
 
-## Deploy on Vercel
+### Flujo de Trabajo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. El contenido se gestiona a través del panel de administración de Strapi
+2. La API de Strapi proporciona los datos al frontend
+3. El frontend en Next.js renderiza el contenido
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Personalizando el Contenido
+
+1. Accede al panel de administración de Strapi: [http://localhost:1337/admin](http://localhost:1337/admin)
+2. Crea o modifica los tipos de contenido según necesites
+3. Añade contenido a través de la interfaz de administración
+
+## Despliegue
+
+### Backend (Strapi)
+
+Para desplegar Strapi en producción:
+
+```bash
+cd eurega-cms
+npm run build
+npm run start
+# o
+yarn build
+yarn start
+```
+
+Considera utilizar un servicio como Heroku, Digital Ocean o AWS para el despliegue de producción.
+
+### Frontend (Next.js)
+
+Para compilar y desplegar el frontend:
+
+```bash
+cd frontend
+npm run build
+npm run start
+# o
+yarn build
+yarn start
+```
+
+Para un despliegue más sencillo, considera utilizar [Vercel](https://vercel.com) (los creadores de Next.js).
+
+## Recursos Adicionales
+
+- [Documentación de Next.js](https://nextjs.org/docs)
+- [Documentación de Strapi](https://docs.strapi.io)
+- [Documentación de PostgreSQL](https://www.postgresql.org/docs/)
+
+## Licencia
+
+Este proyecto es privado y su uso está restringido a Eurega.

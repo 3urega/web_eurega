@@ -1,0 +1,16 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#f5f3ff" />
+  <rect x="150" y="75" width="500" height="80" rx="12" fill="#ddd6fe" />
+  <rect x="150" y="185" width="500" height="30" rx="6" fill="#ddd6fe" />
+  <rect x="150" y="235" width="500" height="30" rx="6" fill="#ddd6fe" />
+  <rect x="150" y="285" width="300" height="30" rx="6" fill="#ddd6fe" />
+  <rect x="150" y="345" width="180" height="40" rx="8" fill="#8b5cf6" />
+  <path d="M400 225 L375 200 L350 225 L325 200 L300 225 L275 200 L250 225" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M550 225 L525 200 L500 225 L475 200 L450 225 L425 200 L400 225" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="225" cy="110" r="25" fill="#8b5cf6" />
+  <text x="400" y="120" font-family="Arial" font-size="28" font-weight="bold" fill="#4c1d95" text-anchor="middle">Matemáticas y LaTeX</text>
+  <text x="400" y="365" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Leer más</text>
+  <text x="400" y="200" font-family="Arial" font-size="18" fill="#4c1d95" text-anchor="middle">$E = mc^2$</text>
+  <text x="400" y="250" font-family="Arial" font-size="18" fill="#4c1d95" text-anchor="middle">$\oint_{\partial\Omega} \mathbf{E} \cdot d\mathbf{S} = \frac{1}{\varepsilon_0} \int_{\Omega} \rho \, dV$</text>
+  <text x="300" y="300" font-family="Arial" font-size="18" fill="#4c1d95" text-anchor="middle">$\frac{d^2y}{dx^2} + py\frac{dy}{dx} + qy = 0$</text>
+</svg> 

@@ -10,6 +10,8 @@ interface SectionProps {
   containerSize?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   containerClassName?: string;
   withContainer?: boolean;
+  title?: string;
+  subtitle?: string;
 }
 
 export default function Section({
@@ -21,6 +23,8 @@ export default function Section({
   containerSize = 'lg',
   containerClassName = '',
   withContainer = true,
+  title,
+  subtitle,
 }: SectionProps) {
   // Map spacing to padding class
   const spacingClass = {
@@ -29,12 +33,24 @@ export default function Section({
     lg: 'py-16 sm:py-24',
   };
 
-  const content = withContainer ? (
-    <Container size={containerSize} className={containerClassName}>
+  const content = (
+    <>
+      {(title || subtitle) && (
+        <div className="text-center mb-10">
+          {title && <h2 className="text-3xl font-bold mb-4">{title}</h2>}
+          {subtitle && <p className="text-xl text-gray-600">{subtitle}</p>}
+        </div>
+      )}
       {children}
+    </>
+  );
+
+  const wrappedContent = withContainer ? (
+    <Container size={containerSize} className={containerClassName}>
+      {content}
     </Container>
   ) : (
-    children
+    content
   );
 
   return (
@@ -42,7 +58,7 @@ export default function Section({
       id={id}
       className={`${background} ${spacingClass[spacing]} ${className}`}
     >
-      {content}
+      {wrappedContent}
     </section>
   );
 } 
