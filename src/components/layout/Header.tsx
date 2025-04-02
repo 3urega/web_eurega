@@ -8,8 +8,9 @@ import Button from '../ui/Button';
 const navigation = [
   { name: 'Inicio', href: '/' },
   { name: 'Servicios', href: '/servicios' },
-  { name: 'Proyectos', href: '/proyectos' },
-  { name: 'Blog', href: '/blog' },
+  // { name: 'Proyectos', href: '/proyectos' }, // Temporalmente oculto
+  // { name: 'Blog', href: '/blog' }, // Temporalmente oculto
+  // { name: 'Guía SEO IA', href: '/guia-seo-ia' },
   { name: 'Sobre Nosotros', href: '/sobre-nosotros' },
 ];
 
