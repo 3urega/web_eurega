@@ -7,13 +7,13 @@ import { notFound } from 'next/navigation';
 import MainLayout from '@/components/layout/MainLayout';
 import PageHeader from '@/components/ui/PageHeader';
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+// Tipo simplificado para los parámetros de ruta
+export interface Params {
+  slug: string;
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+// Función para generar metadatos
+export async function generateMetadata({ params }: { params: Params }) {
   try {
     const post = await getPostBySlug(params.slug);
     return {
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   }
 }
 
+// Generar rutas estáticas para la compilación
 export async function generateStaticParams() {
   const posts = await getPosts(100);
   return posts.map((post) => ({
@@ -35,7 +36,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+// Página principal
+export default async function BlogPostPage({ params }: { params: Params }) {
   try {
     const post = await getPostBySlug(params.slug);
     

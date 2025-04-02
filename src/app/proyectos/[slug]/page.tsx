@@ -8,13 +8,20 @@ import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import { getProjects } from '@/services/strapi';
 
-interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
+// Tipo estándar para los parámetros de ruta
+export interface Params {
+  slug: string;
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+// Generar rutas estáticas para la compilación
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project: any) => ({
+    slug: project.slug,
+  }));
+}
+
+export default async function ProjectPage({ params }: { params: Params }) {
   const { slug } = params;
   
   // Obtener todos los proyectos

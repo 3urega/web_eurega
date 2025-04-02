@@ -6,14 +6,13 @@ import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import { getServices } from '@/services/strapi';
 
-interface ServicePageProps {
-  params: {
-    slug: string;
-  };
+// Tipo estándar para los parámetros de ruta
+export interface Params {
+  slug: string;
 }
 
 // Función para generar metadatos dinámicos basados en el slug
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = params;
   const services = await getServices();
   const service = services.find((s: any) => s.slug === slug);
@@ -51,7 +50,15 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 }
 
-export default async function ServicePage({ params }: ServicePageProps) {
+// Generar rutas estáticas para la compilación
+export async function generateStaticParams() {
+  const services = await getServices();
+  return services.map((service: any) => ({
+    slug: service.slug,
+  }));
+}
+
+export default async function ServicePage({ params }: { params: Params }) {
   const { slug } = params;
   
   // Obtener todos los servicios
