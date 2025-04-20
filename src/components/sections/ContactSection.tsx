@@ -31,8 +31,8 @@ export default function ContactSection({
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
                 <p className="text-gray-600">
-                  <a href="mailto:info@eurega.com" className="text-purple-600 hover:text-purple-800">
-                    info@eurega.com
+                  <a href="mailto:admin@eurega.es" className="text-purple-600 hover:text-purple-800">
+                    admin@eurega.es
                   </a>
                 </p>
               </div>

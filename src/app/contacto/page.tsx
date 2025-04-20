@@ -51,7 +51,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-gray-900">Email</h3>
-                    <p className="text-gray-800 font-medium">info@eurega.com</p>
+                    <p className="text-gray-800 font-medium">admin@eurega.es</p>
                   </div>
                 </div>
                 
@@ -91,7 +91,7 @@ export default function ContactPage() {
                   Formulario de contacto en desarrollo...
                 </p>
                 <p className="text-gray-800 font-medium">
-                  Mientras tanto, puedes enviarnos un email a <a href="mailto:info@eurega.com" className="text-purple-700 font-semibold hover:underline">info@eurega.com</a> o 
+                  Mientras tanto, puedes enviarnos un email a <a href="mailto:admin@eurega.es" className="text-purple-700 font-semibold hover:underline">admin@eurega.es</a> o 
                   llamarnos al <a href="tel:+34912345678" className="text-purple-700 font-semibold hover:underline">+34 912 345 678</a>.
                 </p>
               </div>
