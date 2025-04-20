@@ -27,6 +27,11 @@ export async function fetchAPI(
   };
 
   try {
+    console.log('=== INICIO DE PETICIÓN A STRAPI ===');
+    console.log('URL:', `${API_URL}/api/${endpoint}`);
+    console.log('Método:', options.method || 'GET');
+    console.log('Opciones:', mergedOptions);
+    
     // Agregamos un timeout configurable para evitar esperas muy largas
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
@@ -38,13 +43,22 @@ export async function fetchAPI(
     
     clearTimeout(timeoutId);
     
+    console.log('Status:', res.status);
+    console.log('Status Text:', res.statusText);
+    
     if (!res.ok) {
+      console.error('Error en la respuesta:', res.status, res.statusText);
       throw new Error(`Error ${res.status}: ${res.statusText}`);
     }
     
     const data = await res.json();
+    console.log('Respuesta:', data);
+    console.log('=== FIN DE PETICIÓN A STRAPI ===');
     return data;
   } catch (error: any) {
+    console.error('=== ERROR EN PETICIÓN A STRAPI ===');
+    console.error('Error completo:', error);
+    console.error('Stack trace:', error.stack);
     // Devolvemos una estructura vacía compatible con lo que esperamos recibir
     return { data: [] };
   }

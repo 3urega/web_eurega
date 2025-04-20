@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { sendContactForm } from '@/services/strapi';
 import FormField from '../forms/FormField';
 import Button from '../ui/Button';
 
@@ -65,17 +66,21 @@ export default function ContactForm({
     setFormStatus('idle');
     
     try {
+      console.log('=== ENVIANDO FORMULARIO DE CONTACTO ===');
+      console.log('Datos del formulario:', data);
+      
       // Aquí iría la llamada a la API para enviar el formulario
-      // Por ahora, simulamos un envío exitoso después de 1 segundo
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await sendContactForm(data);
+      console.log('Respuesta del servidor:', response);
       
       setFormStatus('success');
       reset();
       onSuccess?.();
     } catch (error) {
+      console.error('=== ERROR AL ENVIAR FORMULARIO ===');
+      console.error('Error completo:', error);
       setFormStatus('error');
       setErrorMessage('Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.');
-      console.error('Error sending form:', error);
     } finally {
       setIsSubmitting(false);
     }
