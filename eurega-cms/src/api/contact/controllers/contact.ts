@@ -1,8 +1,8 @@
 export default {
   async send(ctx) {
     try {
-      // Extraer los datos del body
-      const { name, email, message, service } = ctx.request.body;
+      // Extraer los datos del body.data
+      const { name, email, message, service } = ctx.request.body.data || ctx.request.body;
       
       console.log('Datos recibidos:', ctx.request.body);
 
