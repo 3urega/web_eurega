@@ -59,16 +59,16 @@ module.exports = {
     config: {
       provider: '@strapi/provider-email-nodemailer',
       providerOptions: {
-        host: env('SMTP_HOST', 'smtp.example.com'),
-        port: env.int('SMTP_PORT', 587),
+        host: process.env.SMTP_HOST || 'smtp.example.com',
+        port: parseInt(process.env.SMTP_PORT) || 587,
         auth: {
-          user: env('SMTP_USERNAME', 'user@example.com'),
-          pass: env('SMTP_PASSWORD', 'password'),
+          user: process.env.SMTP_USERNAME || 'user@example.com',
+          pass: process.env.SMTP_PASSWORD || 'password',
         },
       },
       settings: {
-        defaultFrom: env('SMTP_FROM', 'no-reply@eurega.com'),
-        defaultReplyTo: env('SMTP_REPLY_TO', 'info@eurega.com'),
+        defaultFrom: process.env.SMTP_FROM || 'no-reply@eurega.com',
+        defaultReplyTo: process.env.SMTP_REPLY_TO || 'info@eurega.com',
       },
     },
   },
