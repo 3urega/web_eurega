@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/geodiari/account-delete`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
   ];
   
   // Páginas de servicios específicos
