@@ -34,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/privacy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.4,
+    },
+    {
       url: `${baseUrl}/geodiari/privacy`,
       lastModified: currentDate,
       changeFrequency: 'yearly' as const,

@@ -6,17 +6,17 @@ export const metadata: Metadata = {
   description:
     'Política de privacidad de la aplicación Geodiari (Marc Farrés Pijuan / Eurega): tratamiento de datos, anuncios, derechos del interesado y contacto.',
   alternates: {
-    canonical: 'https://eurega.es/geodiari/privacy',
+    canonical: 'https://www.eurega.es/privacy',
   },
   openGraph: {
     title: 'Política de privacidad — Geodiari (Eurega)',
     description:
       'Información sobre el tratamiento de datos personales en la aplicación Geodiari.',
-    url: 'https://eurega.es/geodiari/privacy',
+    url: 'https://www.eurega.es/privacy',
     type: 'website',
   },
 };
 
-export default function GeodiariPrivacyPage() {
+export default function PrivacyLegacyPage() {
   return <GeodiariPrivacyPolicyDoc />;
 }

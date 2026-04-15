@@ -9,7 +9,7 @@ const navigation = {
     { name: 'Sobre Eurega', href: '/sobre' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contacto', href: '/contacto' },
-    { name: 'Privacidad', href: '/geodiari/privacy' },
+    { name: 'Privacidad', href: '/privacy' },
   ],
   social: [
     {
