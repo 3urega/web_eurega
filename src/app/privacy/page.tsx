@@ -4,7 +4,7 @@ import MainLayout from '@/components/layout/MainLayout';
 import PageHeader from '@/components/ui/PageHeader';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
-// prueba deploy 3
+// prueba deploy 4
 export const metadata: Metadata = {
   title: 'Política de privacidad — Geodiari (Eurega)',
   description:
