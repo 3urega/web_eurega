@@ -59,16 +59,25 @@ module.exports = {
     config: {
       provider: '@strapi/provider-email-nodemailer',
       providerOptions: {
-        host: process.env.SMTP_HOST || 'smtp.example.com',
-        port: parseInt(process.env.SMTP_PORT) || 587,
+        host: 'smtp-relay.brevo.com',
+        port: 587,
         auth: {
-          user: process.env.SMTP_USERNAME || 'user@example.com',
-          pass: process.env.SMTP_PASSWORD || 'password',
+          user: '8af315001@smtp-brevo.com',
+          pass: 'On79JvF3RGKS8qP4',
         },
+        secure: false,
+        tls: {
+          rejectUnauthorized: false
+        },
+        dkim: {
+          domainName: "eurega.es",
+          keySelector: "brevo",
+          privateKey: process.env.DKIM_PRIVATE_KEY
+        }
       },
       settings: {
-        defaultFrom: process.env.SMTP_FROM || 'no-reply@eurega.com',
-        defaultReplyTo: process.env.SMTP_REPLY_TO || 'info@eurega.com',
+        defaultFrom: 'Eurega <admin@eurega.es>',
+        defaultReplyTo: 'admin@eurega.es',
       },
     },
   },

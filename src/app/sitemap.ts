@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // URL base del sitio
-  const baseUrl = 'https://eurega.com';
+  const baseUrl = 'https://eurega.es';
   
   // Fecha actual para lastModified
   const currentDate = new Date();
@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.5,
     },
   ];
   
