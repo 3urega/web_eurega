@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/geodiari/account-delete",
         permanent: true,
       },
+      {
+        source: "/privacy",
+        destination: "/geodiari/privacy",
+        permanent: true,
+      },
     ];
   },
 };

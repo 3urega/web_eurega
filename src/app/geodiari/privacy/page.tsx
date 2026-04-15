@@ -4,19 +4,19 @@ import MainLayout from '@/components/layout/MainLayout';
 import PageHeader from '@/components/ui/PageHeader';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
-// prueba deploy 4
+
 export const metadata: Metadata = {
   title: 'Política de privacidad — Geodiari (Eurega)',
   description:
     'Política de privacidad de la aplicación Geodiari (Marc Farrés Pijuan / Eurega): tratamiento de datos, anuncios, derechos del interesado y contacto.',
   alternates: {
-    canonical: 'https://eurega.es/privacy',
+    canonical: 'https://eurega.es/geodiari/privacy',
   },
   openGraph: {
     title: 'Política de privacidad — Geodiari (Eurega)',
     description:
       'Información sobre el tratamiento de datos personales en la aplicación Geodiari.',
-    url: 'https://eurega.es/privacy',
+    url: 'https://eurega.es/geodiari/privacy',
     type: 'website',
   },
 };
@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <MainLayout>
-      {/* push-test */}
       <PageHeader
         title='Política de privacidad de la aplicación "Geodiari" (Eurega)'
         description="Documento aplicable a la app Geodiari; el responsable del tratamiento es Marc Farrés Pijuan (Eurega)."
@@ -251,7 +250,8 @@ export default function PrivacyPage() {
             <p className="not-prose text-base text-gray-700">
               <strong>Aplicación:</strong> Geodiari
               <br />
-              <strong>Package name:</strong> <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm">com.geodiari.app</code>
+              <strong>Package name:</strong>{' '}
+              <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm">com.geodiari.app</code>
             </p>
           </article>
         </Container>
