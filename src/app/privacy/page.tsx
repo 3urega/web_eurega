@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <MainLayout>
+      {/* push-test */}
       <PageHeader
         title='Política de privacidad de la aplicación "Geodiari" (Eurega)'
         description="Documento aplicable a la app Geodiari; el responsable del tratamiento es Marc Farrés Pijuan (Eurega)."
